@@ -1,0 +1,243 @@
+<style>
+    .tx-center{
+        text-align: center;
+    }
+    .table-border th,.table-border td {
+        font-size: 1.2em;
+        border-right:1px solid #4A423B;
+        padding: 3px 5px;
+    }
+    .tr-th {
+        border-bottom:1px solid #4A423B;
+        color:#988D81;
+    }
+    .h2{
+        color:#988D81;
+        -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
+    }
+   .table-border table tr td:last-child,.table-border table tr th:last-child{
+        border-right: none;
+    }
+    .table-border{
+        border:1px solid #4A423B;
+        border-radius:10px;
+    }
+
+    .table-border table{
+        border-collapse: collapse;
+        width: 100%;
+        max-width: 100%;
+    }
+    .inline-block {
+        display:inline-block;
+    }
+    .block {
+        display:block;
+    }
+    .white{
+        color:white;
+    }
+   .table-border tbody tr:nth-of-type(odd) {
+        background-color: rgba(255,255,255,0.1);
+    }
+
+    .tip-info{
+        text-align:left;
+        padding:10px 0;
+        font-size:1.2em;
+        letter-spacing: 0.1em;
+    }
+    .tip-info span {
+        color:#937944;
+    }
+   .table-border .bottom-tip{
+       color:#66584E;
+       font-size:1.2em;
+   }
+    .proxy_desc {
+        border:1px solid #4A423B;
+        border-radius:2px;
+    }
+    .proxy_desc table{
+        width:100%;
+    }
+    .proxy_desc table img{
+        width:100%;
+    }
+    .white{
+        color:white;
+    }
+    .badge{
+        margin-left: 2px;
+        height:18px;
+        width:18px;
+        border-radius:50%;
+        background-color:#CAAD7B;
+        text-align: center;
+        line-height:18px;
+        font-size:14px;
+    }
+    .titleBadgeBg{
+        border-radius:11.5px;
+        height:23px;
+        text-align:left;
+        background-image: -webkit-gradient(linear, 0% 0%, 60% 0%, from(#66644D), to(#000000), color-stop(.5,#333333))
+    }
+    .badge_title{
+        color:#BFA463;
+        font-size:1.5em;
+        padding-left: 5px;
+    }
+</style>
+<div class="container tx-center">
+    <div class="h2">♠❤ <h2 class="inline-block">棋牌业绩标准及返佣比例</h2> ♠❤</div>
+    <div class="table-border">
+        <table>
+            <thead>
+            <tr class="tr-th">
+                <th>代理级别</th>
+                <th>团队业绩/日</th>
+                <th>万/返佣</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{range $v := .Chess}}
+            <tr class="white">
+                <td>{{$v.Name}}</td>
+                <td>{{$v.TeamTotalLow}}-{{$v.TeamTotalLimit}}万</td>
+                <td>每万返佣{{$v.Commission}}元</td>
+            </tr>
+            {{end}}
+            </tbody>
+        </table>
+        {{$firstEle := index .Chess 0}}
+        <div class="bottom-tip">注:上表如{{$firstEle.TeamTotalLow}}-{{$firstEle.TeamTotalLimit}}万,不含{{$firstEle.TeamTotalLimit}}万,以此类推。</div>
+    </div>
+
+    <div class="h2">♠❤ <h2 class="inline-block">真人业绩标准及返佣比例</h2> ♠❤</div>
+    <div class="table-border">
+        <table>
+            <thead>
+            <tr class="tr-th">
+                <th>代理级别</th>
+                <th>团队业绩/日</th>
+                <th>万/返佣</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{range $k, $v := .Real}}
+            <tr class="white">
+                <td>{{$v.Name}}</td>
+                <td>{{$v.TeamTotalLow}}-{{$v.TeamTotalLimit}}万</td>
+                <td>每万返佣{{$v.Commission}}元</td>
+            </tr>
+            {{end}}
+            </tbody>
+        </table>
+        {{$firstRealEle := index .Real 0}}
+        <div class="bottom-tip">注:上表如{{$firstRealEle.TeamTotalLow}}-{{$firstRealEle.TeamTotalLimit}}万,不含{{$firstRealEle.TeamTotalLimit}}万,以此类推。</div>
+    </div>
+
+    <div class="tip-info white">
+        例1:A当天总业绩为300万,A没有自营业绩,其中直属代理B1.B2.B3业绩分别为50万.100万.150万,那么A当天能赚多少佣金呢？
+    </div>
+    <div class="proxy_desc">
+        <table>
+            <tr>
+                <td>
+                    <img src="/assets/img/proxy_desc/B1.png" alt="">
+                    <span class="block" style="color:#8B887B;">(200-120)*50</span>
+                    <span class="block" style="color:#AE7423"> 4000</span>
+                </td>
+                <td class="white">+</td>
+                <td><img src="/assets/img/proxy_desc/B2.png" alt="">
+                    <span class="block" style="color:#8B887B;">(200-140)*100</span>
+                    <span class="block" style="color:#AE7423"> 6000</span>
+                </td>
+                <td class="white">+</td>
+                <td><img src="/assets/img/proxy_desc/B3.png" alt="">
+                    <span class="block" style="color:#8B887B;">(200-160)*150</span>
+                    <span class="block" style="color:#AE7423"> 6000</span>
+                </td>
+                <td class="white">=</td>
+                <td>
+                    <img src="/assets/img/proxy_desc/A.png" alt="">
+                    <span class="block" style="color:#AE7423;font-size:1.4em;"> 16000</span>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="tip-info white">
+        例2:A当天总业绩为300万，其中A自营业绩为50万，直属代理B2.B3.业绩分别为100万.150万，那么A当天能赚取多少佣金呢？
+    </div>
+    <div class="proxy_desc">
+        <table>
+            <tr>
+                <td>
+                    <img src="/assets/img/proxy_desc/A1.png" alt="">
+                    <span class="block" style="color:#8B887B;">(200)*50</span>
+                    <span class="block" style="color:#AE7423"> 10000</span>
+                </td>
+                <td class="white">+</td>
+                <td><img src="/assets/img/proxy_desc/B2.png" alt="">
+                    <span class="block" style="color:#8B887B;">(200-140)*100</span>
+                    <span class="block" style="color:#AE7423"> 6000</span>
+                </td>
+                <td class="white">+</td>
+                <td><img src="/assets/img/proxy_desc/B3.png" alt="">
+                    <span class="block" style="color:#8B887B;">(200-160)*150</span>
+                    <span class="block" style="color:#AE7423"> 6000</span>
+                </td>
+                <td class="white">=</td>
+                <td>
+                    <img src="/assets/img/proxy_desc/A.png" alt="">
+                    <span class="block" style="color:#AE7423;font-size:1.4em;"> 22000</span>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div style="color:gray;margin:10px 0;font-size:1.3em;text-align:left;">注:总业绩 = 自营业绩+下级有效投注总和;自营业绩:会员A有效投注总和。必须有自营业绩或至少俩条线发展才能拿到无限代理佣金,代理线举例
+    :例如你只推广了一个代理,即使这个代理推广了300万业绩,那么你一分佣金也拿不到。
+    </div>
+    <div style="color:red;text-align: left;font-size:1.3em;">
+        备注:上述为棋牌返佣流程举例,真人返佣流程与之同理。
+    </div>
+    <div class="h2">♠❤ <h2 class="inline-block">代理疑问</h2> ♠❤</div>
+    <div class="titleBadgeBg">
+        <span class="inline-block badge" >1</span> <span class="badge_title">如何做代理?</span>
+    </div>
+    <div class="white" style="margin:10px 0;text-align:left;font-size:1.3em;">
+        <span style="color:#BFA463;">答:</span>
+        所有会员均有机会成为我们的官方代理，您可以通过微信，QQ等方式分享您的二维码，或邀请链接，通过此方式注册的会员即成为你的
+        直属代理，其邀请的下级会员皆算做您的团队成员，以此类推，可无限裂变式发展。
+    </div>
+
+
+    <div class="titleBadgeBg">
+        <span class="inline-block badge" >2</span> <span class="badge_title">如何查看自己的专属二维码和注册链接?</span>
+    </div>
+    <div class="white" style="margin:10px 0;text-align:left;font-size:1.3em;">
+        <span style="color:#BFA463;">答:</span>
+        在游戏主界面，点击“推广赚钱”，您可以在此查看您的专属二维码和注册链接，保存您的专属二维码就可以分享了。
+    </div>
+
+
+    <div class="titleBadgeBg">
+        <span class="inline-block badge" >3</span> <span class="badge_title">如何查看佣金.业绩等级？</span>
+    </div>
+    <div class="white" style="margin:10px 0;text-align:left;font-size:1.3em;">
+        <span style="color:#BFA463;">答:</span>
+        在游戏主界面，点击“推广赚钱”-“我的佣金”就能看到自己的佣金等级，可领取的佣金，历史佣金结算情况。
+    </div>
+
+
+    <div class="titleBadgeBg">
+        <span class="inline-block badge" >4</span> <span class="badge_title">业绩的定义是什么？</span>
+    </div>
+    <div class="white" style="margin:10px 0;text-align:left;font-size:1.3em;">
+        <span style="color:#BFA463;">答:</span>
+        业绩即有效投注量，流水，是指某会员下注消费的实际金额（未结算不计算在内）业绩不计输赢。例如:某会员这把下注赢200，下把输100，此时业绩就是300。
+    </div>
+
+</div>
+

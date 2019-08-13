@@ -1,0 +1,15 @@
+{
+  "name":"qp项目文档规范",
+  "version":"1.0.0",
+  "description":"<button class='btn btn-success' >接口规范设计者:Qiuger</button><br/><button class='btn btn-info' >团队人员:Qiuger,victor,文真,求组,lucky</button><br/>",
+  "title":"qpgame接口文档",
+  "sampleUrl":"http://api.admin-qp.com/CKYX/",
+  "header": {
+    "title": "文档设计规范",
+    "filename": "doc/api.md"
+  },
+  "footer": {
+    "title": "版本日志",
+    "filename": "CHANGELOG.md"
+  }
+}

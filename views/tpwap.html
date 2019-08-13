@@ -1,0 +1,120 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body onLoad="">
+
+<form name="wpayForm" method="post" action="{{ .url }}"  class="wpayForm">
+            {{ .data  }}
+</form>
+<div id="wpayAction"></div>
+</body>
+</html>
+<script>
+   var ajaxs = {{ .ajax }}
+   if (ajaxs != 1 ){
+       document.querySelector('.wpayForm').submit()
+   }else{
+       var Ajax = {
+           post: function (url, data, fn) {
+               var xhr = new XMLHttpRequest();
+               xhr.open("POST", url, true);
+               // 添加http头，发送信息至服务器时内容编码类型
+               xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+               xhr.onreadystatechange = function() {
+                   if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 304)) {
+                       fn.call(this, xhr.responseText);
+                   }
+               };
+               xhr.send(data);
+           }
+       }
+       function getElements() {
+           var form = document.querySelector('.wpayForm');
+           var elements = new Array();
+           var tagElements = form.getElementsByTagName('input');
+           for (var j = 0; j < tagElements.length; j++){
+               elements.push(tagElements[j]);
+
+           }
+           return elements;
+       }
+
+       //获取单个input中的【name,value】数组
+       function inputSelector(element) {
+           if (element.checked)
+               return [element.name, element.value];
+       }
+       function input(element) {
+           switch (element.type.toLowerCase()) {
+               case 'submit':
+               case 'hidden':
+               case 'password':
+               case 'text':
+                   return [element.name, element.value];
+               case 'checkbox':
+               case 'radio':
+                   return inputSelector(element);
+           }
+           return false;
+       }
+       //组合URL
+       function serializeElement(element) {
+           var method = element.tagName.toLowerCase();
+           var parameter = input(element);
+
+           if (parameter) {
+               var key = encodeURIComponent(parameter[0]);
+               if (key.length == 0) return;
+
+               if (parameter[1].constructor != Array)
+                   parameter[1] = [parameter[1]];
+
+               var values = parameter[1];
+               var results = [];
+               for (var i=0; i<values.length; i++) {
+                   results.push(key + '=' + encodeURIComponent(values[i]));
+               }
+               return results.join('&');
+           }
+       }
+
+       //调用方法
+       function serializeForm() {
+           var elements = getElements();
+           var queryComponents = new Array();
+
+           for (var i = 0; i < elements.length; i++) {
+               var queryComponent = serializeElement(elements[i]);
+               if (queryComponent)
+                   queryComponents.push(queryComponent);
+           }
+
+           return queryComponents.join('&');
+       }
+
+       var url = document.querySelector('.wpayForm').getAttribute('action');
+       var data = serializeForm();
+       Ajax.post(url,data,function(d){
+           var v = JSON.parse(d);
+           if(v.resultCode=='0000'){
+               var html = v.payMessage;
+               var reg = /^\<html\>.*\<\/html\>$/;
+               if(reg.test(html)){
+                   document.getElementById("wpayAction").innerHTML = html;
+                   document.pay_form.submit();
+               }else{
+                   window.open(html);
+               }
+           }else{
+               document.getElementById("wpayAction").innerHTML = "支付失败！";
+           }
+       });
+
+
+
+
+
+   }
+
+</script>

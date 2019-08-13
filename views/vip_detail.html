@@ -1,0 +1,102 @@
+<style>
+	.tx-center{
+        text-align: center;
+	}
+	th,td {
+		font-size: 1.2em;
+        border-right:1px solid #4A423B;
+        padding: 3px 5px;
+    }
+	.tr-th {
+        border-bottom:1px solid #4A423B;
+        color:#988D81;
+    }
+	.h2{
+        color:#988D81;
+        -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
+    }
+    table tr td:last-child,table tr th:last-child{
+        border-right: none;
+	}
+	.table-border{
+        border:1px solid #4A423B;
+		border-radius:10px;
+	}
+
+	table{
+        border-collapse: collapse;
+        width: 100%;
+        max-width: 100%;
+	}
+	.inline-block {
+		display:inline-block;
+	}
+	.white{
+		color:white;
+	}
+	.right {
+		color:#FAD273;
+	}
+    tbody tr:nth-of-type(odd) {
+        background-color: rgba(255,255,255,0.1);
+    }
+    tbody tr:nth-of-type(odd) td:first-child {
+       color:#CCB07F;
+    }
+    tbody tr:nth-of-type(even) td:first-child {
+        color:#7E3B18;
+    }
+    .tip-info{
+        text-align:left;
+		padding:10px 0;
+		font-size:1.2em;
+        letter-spacing: 0.1em;
+    }
+    .tip-info span {
+		color:#937944;
+	}
+</style>
+<div class="container tx-center">
+	<div class="h2">♠❤ <h2 class="inline-block">VIP晋级模式</h2> ♠❤</div>
+	<div class="table-border">
+		<table>
+        <thead>
+			<tr class="tr-th">
+				<th>VIP级别</th>
+				<th>累计有效投注</th>
+				<th>晋级礼金</th>
+				<th>周礼金</th>
+				<th>月俸禄</th>
+				<th>累计晋级礼金</th>
+				<th>存款加速通道</th>
+				<th>专属客服经理</th>
+			</tr>
+        </thead>
+        <tbody>
+			{{range $v := .viplevels}}
+					<tr class="white">
+						<td>{{$v.Name}}</td>
+						<td>{{if $v.ValidBetMin}} {{$v.ValidBetMin}}万 {{else}} - {{end}}</td>
+						<td>{{if $v.UpgradeAmount}} {{$v.UpgradeAmount}} {{else}} - {{end}}</td>
+						<td>{{if $v.WeeklyAmount}} {{$v.WeeklyAmount}} {{else}} - {{end}}</td>
+						<td>{{if $v.MonthAmount}} {{$v.MonthAmount}} {{else}} - {{end}}</td>
+						<td>{{if $v.UpgradeAmountTotal}} {{$v.UpgradeAmountTotal}} {{else}} - {{end}}</td>
+						<td>{{if $v.HasDepositSpeed}} <span class="right">✔ </span> {{else}} - {{end}}</td>
+						<td>{{if $v.HasOwnService}} <span class="right"> ✔ </span> {{else}} - {{end}}</td>
+					</tr>
+			{{end}}
+        </tbody>
+</table>
+    </div>
+	<div class="tip-info white">
+		即日起 <span>永久累计打码</span> ,让你的会员账号享有至高无上的价值,<span>会员账号 = 金钱</span>,
+		周赠 <span>{{.WeeklyAmount}}</span> 元,月送<span>{{.MonthAmount}}</span>元,等级礼金最高可获得<span>{{.UpgradeAmountTotal}}元</span>!
+		您的每一笔棋牌投注
+		都会永久累计,累计到一定标准,即可享有至高无上的价值体验。
+
+	</div>
+	<div class="tip-info white">
+		每升一级即可获得相对应的等级礼金,<span>等级越高礼金更高</span>,
+		还可获得无门槛要求的<span>周奖金、月俸禄、晋级礼金送不停</span>,这就是您至高无上价值的会员账号！
+	</div>
+</div>

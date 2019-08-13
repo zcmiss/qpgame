@@ -1,0 +1,25 @@
+{
+  "name": "cpadmin",
+  "version": "2.0.0",
+  "private": true,
+  "description": "cpadmin-api-go-iris",
+  "repository": {
+    "type": "git",
+    "url": "http://git.zdff888.com/Qiuger/adminIrisGo.git"
+  },
+  "keywords": [
+    "api"
+  ],
+  "author": "Pling",
+  "license": "ISC",
+  "devDependencies": {
+    "grunt": "^1.0.3",
+    "grunt-apidoc": "^0.11.0",
+    "grunt-contrib-watch": "^1.1.0",
+    "gulp-apidoc-swagger": "^0.2.2"
+  },
+  "dependencies": {
+    "echarts": "^4.0.2",
+    "zrender": "^4.0.1"
+  }
+}

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="x-ua-compatible" content="IE=edge">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="minimal-ui,width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="white">
+  <meta name="format-detection" content="telephone=no">
+  <link rel="stylesheet" type="text/css" href="/assets/{{.platform}}/css/index.css" />
+  <link rel="stylesheet" type="text/css" href="/assets/{{.platform}}/css/swiper-3.4.2.min.css" />
+  <script type="text/javascript" charset="UTF-8" src="https://res.cdn.openinstall.io/openinstall.js"></script>
+  <title></title>
+</head>
+<body>
+<img src="/assets/{{.platform}}/img/tz.JPG" alt="" class="bodyimg">
+<div class="main">
+  <header>
+    <div class="swiper-container ">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="/assets/{{.platform}}/img/banner.png" alt=""></div>
+        <div class="swiper-slide"><img src="/assets/{{.platform}}/img/banner.png" alt=""></div>
+        <div class="swiper-slide"><img src="/assets/{{.platform}}/img/banner.png" alt=""></div>
+        <div class="swiper-slide"><img src="/assets/{{.platform}}/img/banner.png" alt=""></div>
+      </div>
+      <!-- <div class="swiper-pagination"></div> -->
+    </div>
+    <div class="table-img"><img src="/assets/{{.platform}}/img/game.png" alt=""></div>
+    <div class="table-imga"><img src="/assets/{{.platform}}/img/content.png" alt=""></div>
+    <div class="table-imgb" id="downloadButton"><img src="/assets/{{.platform}}/img/btn.gif" alt=""></div>
+    <div class="table-imgc"><img src="/assets/{{.platform}}/img/down1.png" alt=""></div>
+    <div class="table-imgd"><img src="/assets/{{.platform}}/img/a_06.png" alt=""></div>
+    <div class="table-foot" id="downloadButton1"><img src="/assets/{{.platform}}/img/foot.png" alt=""></div>
+  </header>
+</div>
+<script src="/assets/{{.platform}}/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/assets/{{.platform}}/js/swiper-3.4.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+  var isWeixin = false;
+  if (typeof WeixinJSBridge == "object" && typeof WeixinJSBridge.invoke == "function") {
+    isWeixin = true;
+    $(".bodyimg").css('display','block');
+  } else {
+    if (document.addEventListener) {
+      document.addEventListener("WeixinJSBridgeReady", function() { isWeixin = true;$(".bodyimg").css('display','block'); }, false);
+    } else if (document.attachEvent) {
+      document.attachEvent("WeixinJSBridgeReady", function() { isWeixin = true;$(".bodyimg").css('display','block'); });
+      document.attachEvent("onWeixinJSBridgeReady", function() { isWeixin = true;$(".bodyimg").css('display','block'); });
+    }
+  }
+  /* 加载完成之后处理 */
+  window.onload = function(){
+    var mySwiper = new Swiper ('.swiper-container', {
+      // 轮播图的方向，也可以是vertical方向
+      direction:'horizontal',
+      //播放速度
+      loop: true,
+      // 自动播放时间
+      autoplay:2000,
+      // 播放的速度
+      speed:500,
+      // 滑动之后， 定时器也不会被清除
+      autoplayDisableOnInteraction : false,
+    });
+    // 主题
+    var docTitle = document.querySelectorAll('.docTitle');
+    for (var i=0; i < docTitle.length; i++) {
+      docTitle[i].innerHTML = pageObj.title;
+    };
+    // $('.table-foot').click(function(){
+    //     var os;
+    //     var u = navigator.userAgent;
+    //     //苹果和Ipad设备
+    //     if(u.indexOf('iPhone') > -1 || /iPad/gi.test(u)){
+    //         window.location.href = "ios.com"
+    //     }
+    //     else{
+    //     //其他
+    //         window.location.href = "andriod.com"
+    //     }
+    //     $('body').hide();
+    //     close(os);
+
+    // })
+    // $('.table-imgb').click(function(){
+    //     var os;
+    //     var u = navigator.userAgent;
+    //     //苹果和Ipad设备
+    //     if(u.indexOf('iPhone') > -1 || /iPad/gi.test(u)){
+    //         window.location.href = "ios.com"
+    //     }
+    //     else{
+    //     //其他
+    //         window.location.href = "andriod.com"
+    //     }
+    //     $('body').hide();
+    //     close(os);
+
+    // })
+  };
+
+</script>
+<script type="text/javascript">
+  //openinstall初始化时将与openinstall服务器交互，应尽可能早的调用
+  /*web页面向app传递的json数据(json string/js Object)，应用被拉起或是首次安装时，通过相应的android/ios api可以获取此数据*/
+  var data = OpenInstall.parseUrlParams();//openinstall.js中提供的工具函数，解析url中的所有查询参数
+  new OpenInstall({
+    /*appKey必选参数，openinstall平台为每个应用分配的ID*/
+    appKey : "bub2qo",
+    /*可选参数，自定义android平台的apk下载文件名，只有apk在openinstall托管时才有效；个别andriod浏览器下载时，中文文件名显示乱码，请慎用中文文件名！*/
+    //apkFileName : 'com.fm.openinstalldemo-v2.2.0.apk',
+    /*可选参数，是否优先考虑拉起app，以牺牲下载体验为代价*/
+    //preferWakeup:true,
+    /*自定义遮罩的html*/
+    //mask:function(){
+    //  return "<div id='openinstall_shadow' style='position:fixed;left:0;top:0;background:rgba(0,255,0,0.5);filter:alpha(opacity=50);width:100%;height:100%;z-index:10000;'></div>"
+    //},
+    /*openinstall初始化完成的回调函数，可选*/
+    onready : function() {
+      var m = this, button = document.getElementById("downloadButton"),button1 = document.getElementById("downloadButton1") ;
+      button.style.visibility = "visible";
+      button1.style.visibility = "visible";
+
+      /*在app已安装的情况尝试拉起app*/
+      m.schemeWakeup();
+      /*用户点击某个按钮时(假定按钮id为downloadButton)，安装app*/
+      button.onclick = function() {
+        m.wakeupOrInstall();
+        return false;
+      }
+      button1.onclick = function() {
+        m.wakeupOrInstall();
+        return false;
+      }
+    }
+  }, data);
+</script>
+</body>
+</html>

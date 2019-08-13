@@ -1,0 +1,128 @@
+@charset "UTF-8";
+a,button{cursor:pointer}
+.main,.out-container{
+    display:block;
+    height:100%
+}
+*{
+    box-sizing:border-box
+}
+body,html{
+    margin:0;
+    padding:0;
+    height:100%;
+    color:#a9b1b3;
+    font-size:14px;
+    background-color:#fff;
+    -webkit-font-smoothing:antialiased;
+    background-image: url('../img/bg.png');
+    background-size: cover;
+}
+
+.main{
+    width: 100%;
+    position: relative;
+/*    background-image: url('../img/bg.png');
+    background-size: cover;*/
+}
+.main .swiper-container{
+    width: 100%;
+    overflow: hidden;
+}
+.main .swiper-container .swiper-wrapper{
+    border-radius: 5%;
+    width: 100%;
+    margin-top: .5rem
+}
+.main .swiper-container img{
+    width: 100%;
+}
+.table-img{
+    width: 100%;
+    padding: 2%;
+}
+.table-img img{
+    width: 100%;
+}
+.table-imga{
+    width: 100%;
+    padding-left: 15%;
+    padding-top: 3%;
+}
+.table-imga img{
+    width: 100%;
+}
+.table-imgb{
+    width: 100%;
+    padding: 3% 10%;
+}
+.table-imgb img{
+    width: 100%;
+}
+.table-imgc{
+    width: 100%;
+    padding: 5% 2%;
+}
+.table-imgc img{
+    width: 100%;
+}
+.table-imgd{
+    width: 100%;
+    padding: 0 3%;
+    padding-bottom: 30%
+}
+.table-imgd img{
+    width: 100%;
+}
+.table-foot{
+    position: fixed;
+    bottom: -0.5rem;
+    width: 100%
+}
+.table-foot img{
+    width: 100%;
+}
+
+@media(max-width:1280px){
+    .pattern{
+        width:18%;
+    }
+}
+@media screen and (max-width: 768px) {
+    .main {
+        width: 100%;
+        max-width: 100%;
+    }
+    .main .app-brief {
+        text-align: center;
+    }
+    .main .icon-container {
+        width: 100%;
+        height: auto;
+        text-align: center;
+    }
+    .main .icon-container .icon {
+        position: static;
+        display: inline-block;
+    }
+    .main>header .release-type {
+        display: none;
+    }
+    .main>header .name {
+        text-align: center;
+        font-size: 24px;
+    }
+    .main header .app-brief .name .icon-warp {
+        position: static;
+        display: inline-block;
+        max-width: 76%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        word-wrap: normal;
+        line-height: 1.6;
+    }
+    .main>header .release-info {
+        display: block;
+    }
+}
